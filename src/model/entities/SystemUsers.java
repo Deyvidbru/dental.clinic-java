@@ -1,10 +1,12 @@
 package model.entities;
 
+import model.exceptions.DomainException;
+
 public class SystemUsers {
-	
+
 	private String login;
 	private String password;
-	
+
 	public SystemUsers() {
 	}
 
@@ -23,5 +25,14 @@ public class SystemUsers {
 
 	public String getLogin() {
 		return login;
+	}
+
+	public void returnFailed(String login, String password) {
+
+		if (!login.equals(this.login) || !password.equals(this.password)) {
+			throw new DomainException("Wrong login or password");
+		}
+		this.login = login;
+		this.password = password;
 	}
 }
